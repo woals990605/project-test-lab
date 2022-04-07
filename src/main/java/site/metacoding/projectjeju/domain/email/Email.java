@@ -31,12 +31,13 @@ public class Email {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
 
-    @JoinColumn(name = "userId")
-    @ManyToOne
-    private User user;
+    @Column(nullable = false, length = 30)
+    private String senderEmail;
 
-    @Lob
-    @Column(nullable = false)
+    @Column(nullable = false, length = 30)
+    private String recelverEmail;
+
+    @Column(nullable = false, length = 300)
     private String content;
 
     @CreatedDate

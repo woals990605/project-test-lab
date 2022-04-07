@@ -9,32 +9,36 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
 import lombok.RequiredArgsConstructor;
-import site.metacoding.projectjeju.domain.resturant.Resturant;
+import site.metacoding.projectjeju.domain.post.Restaurant;
+import site.metacoding.projectjeju.domain.post.RestaurantRepository;
 import site.metacoding.projectjeju.web.dto.download.JejuDto;
-import site.metacoding.projectjeju.web.dto.download.ResturantDto;
+import site.metacoding.projectjeju.web.dto.download.RestaurantDto;
 
 @RequiredArgsConstructor
 @Controller
 public class PracticeController {
 
+    private final RestaurantRepository restaurantRepository;
+
     @GetMapping("/test/craw")
-    public @ResponseBody List<Resturant> croling() {
+    public @ResponseBody List<Restaurant> croling() {
         RestTemplate rt = new RestTemplate();
 
         JejuDto body = rt.getForObject(
-                "https://map.naver.com/v5/api/search?caller=pcweb&query=제주시음식점&type=all&searchCoord=126.03779919999974;33.44996470000005&page=1&displayCount=10&isPlaceRecommendationReplace=true&lang=ko&_json",
+                "https://map.naver.com/v5/api/search?caller=pcweb&query=서귀포시디저트&type=all&searchCoord=126.03779919999974;33.44996470000005&page=3&displayCount=100&isPlaceRecommendationReplace=true&lang=ko&_json",
                 JejuDto.class);
         // System.out.println(body);
-        List<ResturantDto> list = body.getResult().getPlace().getList();
+        List<RestaurantDto> list = body.getResult().getPlace().getList();
 
         // 여기에 옮기는게 목적
-        List<Resturant> resturants = new ArrayList<>();
+        List<Restaurant> restaurants = new ArrayList<>();
 
-        for (ResturantDto resturantDto : list) {
-            resturants.add(resturantDto.toEntity());
+        for (RestaurantDto restaurantDto : list) {
+            restaurants.add(restaurantDto.toEntity());
         }
+        restaurantRepository.saveAll(restaurants);
 
-        return resturants;
+        return restaurants;
     }
 
     // @PostMapping("/list")

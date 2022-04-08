@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
@@ -11,6 +12,7 @@ import org.springframework.web.client.RestTemplate;
 import lombok.RequiredArgsConstructor;
 import site.metacoding.projectjeju.domain.post.Restaurant;
 import site.metacoding.projectjeju.domain.post.RestaurantRepository;
+import site.metacoding.projectjeju.service.PostService;
 import site.metacoding.projectjeju.web.dto.download.JejuDto;
 import site.metacoding.projectjeju.web.dto.download.RestaurantDto;
 
@@ -19,6 +21,7 @@ import site.metacoding.projectjeju.web.dto.download.RestaurantDto;
 public class PracticeController {
 
     private final RestaurantRepository restaurantRepository;
+    private final PostService postService;
 
     @GetMapping("/test/craw")
     public @ResponseBody List<Restaurant> croling() {
@@ -46,5 +49,11 @@ public class PracticeController {
     // // List<FoodTbl> foodEntity = foodTblRepository.save();
     // // return foodEntity;
     // }
+    @GetMapping("/post/list")
+    public String list(Model model, String name, String menuInfo, String category) {
+        List<Restaurant> restaurants = postService.글목록(name, menuInfo, category);
+        model.addAttribute("Restaurant", restaurants);
+        return "/post/list";
+    }
 
 }

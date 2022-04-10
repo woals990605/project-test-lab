@@ -10,5 +10,5 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class PlaceDto {
-    private List<ResturantDto> list;
+    private List<RestaurantDto> list;
 }

@@ -5,12 +5,12 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import site.metacoding.projectjeju.domain.resturant.Resturant;
+import site.metacoding.projectjeju.domain.post.Restaurant;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class ResturantDto {
+public class RestaurantDto {
 
     private String thumUrl; // 썸네일
     private String name; // 가게 이름
@@ -23,25 +23,25 @@ public class ResturantDto {
     private String x; // 위도
     private String y; // 경도
 
-    public Resturant toEntity() {
-        Resturant resturant = new Resturant();
-        resturant.setThumUrl(thumUrl);
-        resturant.setName(name);
-        resturant.setAddress(address);
-        resturant.setTelDisplay(telDisplay);
-        resturant.setBizhourInfo(bizhourInfo);
-        resturant.setHomePage(homePage);
-        resturant.setMenuInfo(menuInfo);
-        resturant.setX(x);
-        resturant.setY(y);
+    public Restaurant toEntity() {
+        Restaurant restaurant = new Restaurant();
+        restaurant.setThumUrl(thumUrl);
+        restaurant.setName(name);
+        restaurant.setAddress(address);
+        restaurant.setTelDisplay(telDisplay);
+        restaurant.setBizhourInfo(bizhourInfo);
+        restaurant.setHomePage(homePage);
+        restaurant.setMenuInfo(menuInfo);
+        restaurant.setX(x);
+        restaurant.setY(y);
 
         String categoryGubun = "";
         for (String temp : category) {
             categoryGubun += temp + ";";
         }
 
-        resturant.setCategory(categoryGubun);
+        restaurant.setCategory(categoryGubun);
 
-        return resturant;
+        return restaurant;
     }
 }

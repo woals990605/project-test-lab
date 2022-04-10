@@ -1,4 +1,4 @@
-package site.metacoding.projectjeju.domain.like;
+package site.metacoding.projectjeju.domain.love;
 
 import java.time.LocalDateTime;
 
@@ -16,7 +16,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import site.metacoding.projectjeju.domain.resturant.Resturant;
+import site.metacoding.projectjeju.domain.post.Restaurant;
 import site.metacoding.projectjeju.domain.user.User;
 
 @NoArgsConstructor
@@ -24,7 +24,7 @@ import site.metacoding.projectjeju.domain.user.User;
 @Data
 @EntityListeners(AuditingEntityListener.class)
 @Entity
-public class Like {
+public class Love {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,7 +36,7 @@ public class Like {
 
     @JoinColumn(name = "restId")
     @ManyToOne
-    private Resturant resturant;
+    private Restaurant resturant;
 
     @CreatedDate
     private LocalDateTime createDate;

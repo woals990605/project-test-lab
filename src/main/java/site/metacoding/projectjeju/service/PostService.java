@@ -14,11 +14,12 @@ public class PostService {
 
     private final RestaurantRepository restaurantRepository;
 
-    public List<Restaurant> 글목록(String name, String menuInfo, String category) {
-        if (name == null & menuInfo == null & category == null) {
-            return restaurantRepository.mSearch("", "", "");
+        pubic L
+
+        if (name == null) {
+            return restaurantRepository.mSearch("");
         } else {
-            return restaurantRepository.mSearch(name, menuInfo, category);
+            return restaurantRepository.mSearch(name);
         }
     }
 }

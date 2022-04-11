@@ -14,7 +14,7 @@
     <div class="container mt-3">
 
         <form action="/post/list" class="d-flex justify-content-end" method="get">
-            <input name="title" class="me-2" type="text" placeholder="Search">
+            <input name="keyword" class="me-2" type="text" placeholder="Search">
             <button class="btn btn-primary" type="submit">검색</button>
         </form>
 
@@ -40,14 +40,14 @@
               {{#Restaurant}}
                 <tr>
                     <td>{{id}}</td>
-                    <td>{{thumUrl}}</td>
+                    <td>{{#thumUrl}}{{thumUrl}}{{/thumUrl}}{{^thumUrl}}null{{/thumUrl}}</td>
                     <td>{{name}}</td>
                     <td>{{address}}</td>
                     <td>{{telDisplay}}</td>
-                    <td>{{bizhourInfo}}</td>
+                    <td>{{#bizhourInfo}}{{bizhourInfo}}{{/bizhourInfo}}{{^bizhourInfo}}null{{/bizhourInfo}}</td>
                     <td>{{homePage}}</td>
                     <td>{{category}}</td>
-                    <td>{{menuInfo}}</td>
+                    <td>{{#menuInfo}}{{menuInfo}}{{/menuInfo}}{{^menuInfo}}null{{/menuInfo}}</td>
                     <td>{{x}}</td>
                     <td>{{y}}</td>
                     <td>{{createDate}}</td>

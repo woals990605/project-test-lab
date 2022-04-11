@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Integer> {
-    @Query(value = "SELECT * FROM restaurant WHERE name like %:name% or menuInfo like %:menuInfo% or category like %:category%", nativeQuery = true)
-    List<Restaurant> mSearch(@Param("name") String name, @Param("menuInfo") String menuInfo,
-            @Param("category") String category);
+    @Query(value = "SELECT * FROM restaurant WHERE name like %:keyword% or menuInfo like %:keyword% or category like %:keyword%", nativeQuery = true)
+    List<Restaurant> mSearch(@Param("keyword") String keyword);
 }

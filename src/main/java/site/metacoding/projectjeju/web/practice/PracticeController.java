@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.client.RestTemplate;
 
@@ -50,10 +51,11 @@ public class PracticeController {
     // // return foodEntity;
     // }
     @GetMapping("/post/list")
-    public String list(Model model, String name, String menuInfo, String category) {
-        List<Restaurant> restaurants = postService.글목록(name, menuInfo, category);
+    public String search(@RequestParam(defaultValue = "") String keyword, Model model) {
+        List<Restaurant> restaurants = postService.글목록(keyword);
+        // System.out.println("사이즈 : " + restaurants.size());
         model.addAttribute("Restaurant", restaurants);
-        return "/post/list";
+        return "list";
     }
 
 }
